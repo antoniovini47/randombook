@@ -7,5 +7,15 @@
     "/": {
       "welcome": "Bem-vindo ao"
     }
+  },
+  "components": {
+    "navbar": {
+      "home": "Início",
+      "about": "Sobre"
+    },
+    "navbar-dropdown-user": {
+      "my-account": "Minha conta",
+      "logout": "Sair"
+    }
   }
 }
