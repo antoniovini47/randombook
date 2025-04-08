@@ -7,5 +7,15 @@
     "/": {
       "welcome": "Welcome to"
     }
+  },
+  "components": {
+    "navbar": {
+      "home": "Home",
+      "about": "About"
+    },
+    "navbar-dropdown-user": {
+      "my-account": "My account",
+      "logout": "Logout"
+    }
   }
 }
