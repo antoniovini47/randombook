@@ -1,0 +1,21 @@
+{
+  "app-data": {
+    "app-name": "RandomBook",
+    "app-description": "Um facebook, mas com dados aleatórios."
+  },
+  "pages": {
+    "/": {
+      "welcome": "Bem-vindo ao"
+    }
+  },
+  "components": {
+    "navbar": {
+      "home": "Início",
+      "about": "Sobre"
+    },
+    "navbar-dropdown-user": {
+      "my-account": "Minha conta",
+      "logout": "Sair"
+    }
+  }
+}

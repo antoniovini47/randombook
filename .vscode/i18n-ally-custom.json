@@ -1,0 +1,16 @@
+{
+  "fileExtensions": {
+    "json": ["json"],
+    "js": ["js", "jsx", "ts", "tsx"]
+  },
+  "localesPaths": ["messages"],
+  "pathMatcher": "{locale}.json",
+  "sourceLanguage": "en",
+  "displayLanguage": "en",
+  "keystyle": "nested",
+  "namespace": true,
+  "enabledParsers": ["json"],
+  "enabledFrameworks": ["react", "next-intl"],
+  "autoDetect": true,
+  "keygenStyle": "kebab-case"
+}
