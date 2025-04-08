@@ -1,0 +1,11 @@
+{
+  "app-data": {
+    "app-name": "RandomBook",
+    "app-description": "Um facebook, mas com dados aleatórios."
+  },
+  "pages": {
+    "/": {
+      "welcome": "Bem-vindo ao"
+    }
+  }
+}
