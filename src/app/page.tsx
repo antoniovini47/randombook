@@ -12,7 +12,7 @@ export default function Home() {
         <div>{`${t("pages./.welcome")} ${t("app-data.app-name")}`}</div>
         <div>{t("app-data.app-description")}</div>
       </div>
-      <div className="flex flex-3/4">
+      <div className="flex flex-3/4 p-24">
         <HomeListUsers searchParams={{ results: 30 }} />
       </div>
     </>

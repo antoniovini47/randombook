@@ -42,10 +42,10 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useEffect, useState } from "react";
 import { SearchParams } from "@/types/user";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { useTranslations } from "next-intl";
+import formatBirthDate from "@/utils/formatBirthDate";
 
 interface HomeListUsersProps {
   searchParams: SearchParams;
@@ -57,7 +57,7 @@ export const HomeListUsers = ({ searchParams }: HomeListUsersProps) => {
 
   if (isLoading) {
     return (
-      <div className="w-full h-full p-24">
+      <div className="w-full h-full">
         <Table>
           <TableHeader>
             <TableRow>
@@ -71,7 +71,7 @@ export const HomeListUsers = ({ searchParams }: HomeListUsersProps) => {
           </TableHeader>
           <TableBody>
             {[...Array(10)].map((_, index) => (
-              <TableRow key={index}>
+              <TableRow key={index} className="h-[15vh]">
                 <TableCell>
                   <Skeleton className="h-4 w-8" />
                 </TableCell>
@@ -79,13 +79,13 @@ export const HomeListUsers = ({ searchParams }: HomeListUsersProps) => {
                   <Skeleton className="h-4 w-24" />
                 </TableCell>
                 <TableCell>
-                  <Skeleton className="h-4 w-32" />
+                  <Skeleton className="h-4 w-24" />
                 </TableCell>
                 <TableCell>
                   <Skeleton className="h-10 w-10 rounded-full" />
                 </TableCell>
                 <TableCell>
-                  <Skeleton className="h-4 w-8" />
+                  <Skeleton className="h-10 w-10 rounded-full" />
                 </TableCell>
                 <TableCell>
                   <Skeleton className="h-4 w-20" />
@@ -105,7 +105,7 @@ export const HomeListUsers = ({ searchParams }: HomeListUsersProps) => {
   console.log(data?.results);
 
   return (
-    <div className="w-full h-full p-24">
+    <div className="w-full h-full">
       <Table>
         <TableHeader>
           <TableRow>
@@ -119,7 +119,7 @@ export const HomeListUsers = ({ searchParams }: HomeListUsersProps) => {
         </TableHeader>
         <TableBody>
           {data?.results.map((user, index) => (
-            <TableRow key={index}>
+            <TableRow key={index} className="h-[15vh] hover:bg-gray-100">
               <TableCell>{index}</TableCell>
               <TableCell>
                 {user.name.first} {user.name.last}
@@ -127,12 +127,24 @@ export const HomeListUsers = ({ searchParams }: HomeListUsersProps) => {
               <TableCell>{user.email}</TableCell>
               <TableCell>
                 <Avatar>
-                  <AvatarImage src={user.picture.thumbnail} />
-                  <AvatarFallback>{user.name.first.charAt(0)}</AvatarFallback>
+                  <AvatarImage className="w-10 h-10 rounded-full" src={user.picture.thumbnail} />
+                  <AvatarFallback>
+                    <Skeleton className="w-10 h-10 rounded-full" />
+                  </AvatarFallback>
                 </Avatar>
               </TableCell>
-              <TableCell>{user.nat}</TableCell>
-              <TableCell>{user.dob.date}</TableCell>
+              <TableCell>
+                <Avatar>
+                  <AvatarImage
+                    className="w-10 h-10 rounded-full"
+                    src={`https://flagicons.lipis.dev/flags/1x1/${user.nat.toLowerCase()}.svg`}
+                  />
+                  <AvatarFallback>
+                    <Skeleton className="w-10 h-10 rounded-full" />
+                  </AvatarFallback>
+                </Avatar>
+              </TableCell>
+              <TableCell>{formatBirthDate(user.dob.date)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
