@@ -14,16 +14,6 @@ controle de erros. Como é um teste só deixarei obrigatorio Nome e Telefone
 Esses foram gerados diretamente com base na documentação da API do RandomUser.me.
 */
 
-export type RandomUserResponse = {
-  results: User[];
-  info?: {
-    seed: string;
-    results: number;
-    page: number;
-    version: string;
-  };
-};
-
 export type User = {
   name: {
     title?: string;
@@ -72,4 +62,14 @@ export type User = {
     thumbnail: string;
   };
   nat?: string;
+};
+
+export type RandomUserResponse = {
+  results: User[];
+  info?: {
+    seed: string;
+    results: number;
+    page: number;
+    version: string;
+  };
 };

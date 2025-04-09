@@ -3,17 +3,9 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { getRandomUser } from "@/services/users.service";
-import type { User } from "@/types/User";
 
 export default function Home() {
   const t = useTranslations();
-
-  const newUser: User = {
-    name: {
-      first: "John",
-    },
-    phone: "1234567890",
-  };
 
   async function handleGetRandomUser() {
     const randomUser = await getRandomUser();
@@ -22,9 +14,13 @@ export default function Home() {
 
   return (
     <>
-      <div>{`${t("pages./.welcome")} ${t("app-data.app-name")}`}</div>
-      <div>{t("app-data.app-description")}</div>
-      <Button onClick={handleGetRandomUser}>Get Random User</Button>
+      <div className="flex flex-col gap-4 flex-1/4">
+        <div>{`${t("pages./.welcome")} ${t("app-data.app-name")}`}</div>
+        <div>{t("app-data.app-description")}</div>
+      </div>
+      <div className="flex flex-3/4">
+        <Button onClick={handleGetRandomUser}>Get Random User</Button>
+      </div>
     </>
   );
 }
