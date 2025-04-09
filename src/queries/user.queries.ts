@@ -8,16 +8,16 @@ e outra que varia de acordo com a function que é passada pra ela.
 */
 
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import type { RandomUserResponse } from "@/types/user";
+import type { RandomUserResponse, SearchParams } from "@/types/user";
+import * as UserService from "@/services/users.service";
 
 export const useGetUsers = (
-  queryKey: string,
-  queryFn: () => Promise<RandomUserResponse>,
+  searchParams: SearchParams,
   options?: Omit<UseQueryOptions<RandomUserResponse, Error>, "queryKey" | "queryFn">
 ) => {
   return useQuery<RandomUserResponse, Error>({
-    queryKey: [queryKey],
-    queryFn,
+    queryKey: ["search-users", searchParams],
+    queryFn: () => UserService.searchUsers(searchParams),
     ...options,
   });
 };

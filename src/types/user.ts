@@ -9,16 +9,17 @@ Tudo isso pra facilitar a manutenção e o entendimento do código.
 Evitando o uso de "any".
 
 Alguns tipos foram declarados opcionais com o "?" para facilitar a leitura do código e
-controle de erros. Como é um teste só deixarei obrigatorio Nome e Telefone
+controle de erros. Como é um teste só deixarei obrigatorio os que são pedidos no teste.
 
 Esses foram gerados diretamente com base na documentação da API do RandomUser.me.
 */
 
 export type User = {
+  gender?: string;
   name: {
-    title?: string;
+    title: string;
     first: string;
-    last?: string;
+    last: string;
   };
   location?: {
     city: string;
@@ -34,7 +35,7 @@ export type User = {
       description: string;
     };
   };
-  email?: string;
+  email: string;
   login?: {
     uuid: string;
     username: string;
@@ -42,7 +43,7 @@ export type User = {
     salt: string;
     md5: string;
   };
-  dob?: {
+  dob: {
     date: string;
     age: number;
   };
@@ -50,26 +51,36 @@ export type User = {
     date: string;
     age: number;
   };
-  phone: string;
+  phone?: string;
   cell?: string;
-  id?: {
+  id: {
     name: string;
     value: string;
   };
-  picture?: {
+  picture: {
     large: string;
     medium: string;
     thumbnail: string;
   };
-  nat?: string;
+  nat: string;
 };
 
 export type RandomUserResponse = {
   results: User[];
-  info?: {
+  info: {
     seed: string;
     results: number;
     page: number;
     version: string;
   };
+};
+
+type IncludeExcludePossibleFields = keyof User;
+
+export type SearchParams = {
+  results?: number;
+  page?: number;
+  seed?: string;
+  inc?: IncludeExcludePossibleFields[];
+  exc?: IncludeExcludePossibleFields[];
 };

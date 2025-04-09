@@ -6,7 +6,7 @@ seta pra default e salva
 
 import { cookies } from "next/headers";
 import { getRequestConfig, setRequestLocale } from "next-intl/server";
-import { locales, defaultLocale } from "./locales";
+import { locales, defaultLocale } from "@/i18n/locales";
 
 export default getRequestConfig(async () => {
   const cookieStore = await cookies();

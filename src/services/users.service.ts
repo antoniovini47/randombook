@@ -1,21 +1,28 @@
-/* Comentário para o teste técnico: 
-Neste arquivo se encontrarm as principais funções que fazem requisições para a API do RandomUser.me
-Elas abstraem a lógica do api.service.ts e utilizam a função api para fazer as requisições.
-*/
-
 import { getConfig } from "@/lib/config";
-import { api } from "./api.service";
+import axios from "axios";
+import { SearchParams } from "@/types/user";
 
-const ramdomUserBaseURL = getConfig("ramdomUserBaseURL");
+const ramdomUserBaseURL: string | URL = getConfig("ramdomUserBaseURL");
 
-export async function getRandomUser() {
-  const response = await api(`${ramdomUserBaseURL}`, {
-    method: "GET",
+export async function searchUsers(searchParams: SearchParams) {
+  const url = new URL(ramdomUserBaseURL);
+
+  Object.entries(searchParams).forEach(([key, value]) => {
+    if (value) {
+      if (Array.isArray(value)) {
+        url.searchParams.append(key, value.join(","));
+      } else {
+        url.searchParams.append(key, value.toString());
+      }
+    }
   });
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch random user");
+  console.log(url.toString());
+  const response = await axios.get(url.toString());
+
+  if (response.status !== 200) {
+    throw new Error("Failed to fetch users");
   }
 
-  return response.json();
+  return response.data;
 }

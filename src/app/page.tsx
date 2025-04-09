@@ -1,16 +1,10 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
-import { getRandomUser } from "@/services/users.service";
+import HomeListUsers from "@/components/home-list-users";
 
 export default function Home() {
   const t = useTranslations();
-
-  async function handleGetRandomUser() {
-    const randomUser = await getRandomUser();
-    console.log("Fetched random user: ", randomUser.results[0]);
-  }
 
   return (
     <>
@@ -19,7 +13,7 @@ export default function Home() {
         <div>{t("app-data.app-description")}</div>
       </div>
       <div className="flex flex-3/4">
-        <Button onClick={handleGetRandomUser}>Get Random User</Button>
+        <HomeListUsers searchParams={{ results: 30 }} />
       </div>
     </>
   );
