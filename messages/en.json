@@ -22,8 +22,12 @@
       "name": "Name",
       "email": "Email",
       "picture": "Picture",
-      "nat": "Nationality",
+      "nat": "Country",
       "dob": "Date of birth"
+    },
+    "home-search-bar": {
+      "placeholder": "Search for a user",
+      "search": "Search"
     }
   }
 }

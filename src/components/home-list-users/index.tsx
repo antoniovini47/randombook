@@ -1,4 +1,3 @@
-import { useGetUsers } from "@/queries/user.queries";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -42,18 +41,46 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Skeleton } from "@/components/ui/skeleton";
-import { SearchParams } from "@/types/user";
+import { User } from "@/types/user";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { useTranslations } from "next-intl";
 import formatBirthDate from "@/utils/formatBirthDate";
+import { useState } from "react";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 
-interface HomeListUsersProps {
-  searchParams: SearchParams;
-}
+type HomeListUsersProps = {
+  listUsers: User[];
+  isLoading: boolean;
+  error: Error | null;
+};
 
-export const HomeListUsers = ({ searchParams }: HomeListUsersProps) => {
+const itensPerPageOptions = [5, 10, 20];
+
+export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProps) => {
   const t = useTranslations("components.home-list-users");
-  const { data, isLoading, error } = useGetUsers(searchParams);
+  const [itensPerPage, setItensPerPage] = useState(itensPerPageOptions[0]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(listUsers.length / itensPerPage);
+
+  const currentUsers = listUsers.slice(
+    (currentPage - 1) * itensPerPage,
+    currentPage * itensPerPage
+  );
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const handleItensPerPageChange = (value: number) => {
+    setItensPerPage(value);
+    setCurrentPage(1); // Reset to first page when items per page change
+  };
 
   if (isLoading) {
     return (
@@ -70,8 +97,8 @@ export const HomeListUsers = ({ searchParams }: HomeListUsersProps) => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {[...Array(10)].map((_, index) => (
-              <TableRow key={index} className="h-[15vh]">
+            {[...Array(itensPerPage)].map((_, index) => (
+              <TableRow key={index} className="h-15">
                 <TableCell>
                   <Skeleton className="h-4 w-8" />
                 </TableCell>
@@ -94,6 +121,41 @@ export const HomeListUsers = ({ searchParams }: HomeListUsersProps) => {
             ))}
           </TableBody>
         </Table>
+        <div className="flex justify-between items-center mb-4">
+          <Select
+            value={itensPerPage.toString()}
+            onValueChange={(value: string) => handleItensPerPageChange(Number(value))}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select items per page" />
+            </SelectTrigger>
+            <SelectContent>
+              {itensPerPageOptions.map((option) => (
+                <SelectItem key={option} value={option.toString()}>
+                  {option} per page
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Pagination className="flex justify-center">
+            <PaginationPrevious
+              onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+            />
+            <PaginationContent>
+              {Array.from({ length: totalPages }, (_, i) => (
+                <PaginationItem key={i}>
+                  <PaginationLink
+                    isActive={currentPage === i + 1}
+                    onClick={() => handlePageChange(i + 1)}>
+                    {i + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+            </PaginationContent>
+            <PaginationNext
+              onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+            />
+          </Pagination>
+        </div>
       </div>
     );
   }
@@ -101,8 +163,6 @@ export const HomeListUsers = ({ searchParams }: HomeListUsersProps) => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
-  console.log(data?.results);
 
   return (
     <div className="w-full h-full">
@@ -118,9 +178,9 @@ export const HomeListUsers = ({ searchParams }: HomeListUsersProps) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data?.results.map((user, index) => (
-            <TableRow key={index} className="h-[15vh] hover:bg-gray-100">
-              <TableCell>{index}</TableCell>
+          {currentUsers.map((user, index) => (
+            <TableRow key={index} className="h-15 hover:bg-gray-100">
+              <TableCell>{index + 1 + (currentPage - 1) * itensPerPage}</TableCell>
               <TableCell>
                 {user.name.first} {user.name.last}
               </TableCell>
@@ -149,6 +209,41 @@ export const HomeListUsers = ({ searchParams }: HomeListUsersProps) => {
           ))}
         </TableBody>
       </Table>
+      <div className="flex justify-between items-center mb-4">
+        <Select
+          value={itensPerPage.toString()}
+          onValueChange={(value: string) => handleItensPerPageChange(Number(value))}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select items per page" />
+          </SelectTrigger>
+          <SelectContent>
+            {itensPerPageOptions.map((option) => (
+              <SelectItem key={option} value={option.toString()}>
+                {option} per page
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <Pagination className="flex justify-center">
+          <PaginationPrevious
+            onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+          />
+          <PaginationContent>
+            {Array.from({ length: totalPages }, (_, i) => (
+              <PaginationItem key={i}>
+                <PaginationLink
+                  isActive={currentPage === i + 1}
+                  onClick={() => handlePageChange(i + 1)}>
+                  {i + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+          </PaginationContent>
+          <PaginationNext
+            onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+          />
+        </Pagination>
+      </div>
     </div>
   );
 };
