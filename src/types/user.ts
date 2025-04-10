@@ -22,6 +22,10 @@ export type User = {
     last: string;
   };
   location?: {
+    street?: {
+      number: number;
+      name: string;
+    };
     city: string;
     state: string;
     country: string;
