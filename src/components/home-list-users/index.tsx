@@ -27,6 +27,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import { useRouter } from "next/navigation";
 
 type HomeListUsersProps = {
   listUsers: User[];
@@ -38,6 +39,7 @@ const itensPerPageOptions = [5, 10, 20];
 
 export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProps) => {
   const t = useTranslations("components.home-list-users");
+  const router = useRouter();
   const [itensPerPage, setItensPerPage] = useState(itensPerPageOptions[0]);
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(listUsers.length / itensPerPage);
@@ -119,7 +121,8 @@ export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProp
                 <PaginationItem key={i}>
                   <PaginationLink
                     isActive={currentPage === i + 1}
-                    onClick={() => handlePageChange(i + 1)}>
+                    onClick={() => handlePageChange(i + 1)}
+                    className="transition-colors duration-300 hover:text-blue-500">
                     {i + 1}
                   </PaginationLink>
                 </PaginationItem>
@@ -153,7 +156,10 @@ export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProp
         </TableHeader>
         <TableBody>
           {currentUsers.map((user, index) => (
-            <TableRow key={index} className="h-15 hover:bg-gray-100">
+            <TableRow
+              key={index}
+              className="h-15 hover:bg-gray-100 cursor-pointer transition-colors duration-300"
+              onClick={() => router.push(`/user/${index + 1 + (currentPage - 1) * itensPerPage}`)}>
               <TableCell>{index + 1 + (currentPage - 1) * itensPerPage}</TableCell>
               <TableCell>
                 {user.name.first} {user.name.last}
@@ -161,7 +167,10 @@ export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProp
               <TableCell>{user.email}</TableCell>
               <TableCell>
                 <Avatar>
-                  <AvatarImage className="w-10 h-10 rounded-full" src={user.picture.thumbnail} />
+                  <AvatarImage
+                    className="w-10 h-10 rounded-full transition-transform duration-300 hover:scale-105"
+                    src={user.picture.thumbnail}
+                  />
                   <AvatarFallback>
                     <Skeleton className="w-10 h-10 rounded-full" />
                   </AvatarFallback>
@@ -170,7 +179,7 @@ export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProp
               <TableCell>
                 <Avatar>
                   <AvatarImage
-                    className="w-10 h-10 rounded-full"
+                    className="w-10 h-10 rounded-full transition-transform duration-300 hover:scale-105"
                     src={`https://flagicons.lipis.dev/flags/1x1/${user.nat.toLowerCase()}.svg`}
                   />
                   <AvatarFallback>
@@ -178,7 +187,7 @@ export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProp
                   </AvatarFallback>
                 </Avatar>
               </TableCell>
-              <TableCell>{formatBirthDate(user.dob.date)}</TableCell>
+              <TableCell>{formatBirthDate({ date: user.dob.date })}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -198,7 +207,7 @@ export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProp
             ))}
           </SelectContent>
         </Select>
-        <Pagination className="flex justify-center">
+        <Pagination className="flex justify-center mt-4">
           <PaginationPrevious
             onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
           />
@@ -207,7 +216,8 @@ export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProp
               <PaginationItem key={i}>
                 <PaginationLink
                   isActive={currentPage === i + 1}
-                  onClick={() => handlePageChange(i + 1)}>
+                  onClick={() => handlePageChange(i + 1)}
+                  className="transition-colors duration-300 hover:text-blue-500">
                   {i + 1}
                 </PaginationLink>
               </PaginationItem>

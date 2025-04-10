@@ -9,6 +9,8 @@ represente o mesmo conjunto de usuários, para demonstrações
 de como a aplicação funciona. Neste caso, é um mesmo grupo de 50 usuários.
 
 { seed: "SmartHow", results: 50, page: 1 }
+
+Também a busca pelo nome de forma bem direta, sem utilizar uma função de busca mais complexa.
 */
 
 "use client";
@@ -19,10 +21,11 @@ import HomeListUsers from "@/components/home-list-users";
 import { useState } from "react";
 import type { SearchParams } from "@/types/user";
 import { useGetUsers } from "@/queries/user.queries";
+import { defaultParams } from "@/constants/params";
 
 export default function Home() {
   const t = useTranslations();
-  const [params, setParams] = useState<SearchParams>({ results: 50, seed: "SmartHow", page: 1 });
+  const [params, setParams] = useState<SearchParams>(defaultParams);
   const { data, isLoading, error } = useGetUsers(params);
 
   return (
