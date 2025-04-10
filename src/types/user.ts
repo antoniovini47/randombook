@@ -78,6 +78,7 @@ export type RandomUserResponse = {
 type IncludeExcludePossibleFields = keyof User;
 
 export type SearchParams = {
+  name?: string;
   results?: number;
   page?: number;
   seed?: string;

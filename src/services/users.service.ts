@@ -17,7 +17,6 @@ export async function searchUsers(searchParams: SearchParams) {
     }
   });
 
-  console.log(url.toString());
   const response = await axios.get(url.toString());
 
   if (response.status !== 200) {

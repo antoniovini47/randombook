@@ -1,11 +1,12 @@
 /* Comentário para o teste técnico:
 Aqui representa a página principal da aplicação,
-onde tem o componente de lista de usuários e
-demonstra a interação entre componentes através de props.
+
+Seria uma melhor prática a busca ser feita dentro do componente de lista de usuários,
+mas para fins de demonstração da interação entre componentes através de props, foi feito assim.
 
 O valores da seed e da page são fixos para que sempre 
 represente o mesmo conjunto de usuários, para demonstrações
-de como a aplicação funciona.
+de como a aplicação funciona. Neste caso, é um mesmo grupo de 50 usuários.
 
 { seed: "SmartHow", results: 50, page: 1 }
 */
@@ -33,12 +34,22 @@ export default function Home() {
       <div className="w-full h-auto px-24 py-6">
         <SearchBar
           onSearchParamsChange={(params) => {
-            setParams(params);
+            setParams((prevParams) => ({ ...prevParams, ...params }));
           }}
         />
       </div>
       <div className="flex flex-4/6 px-24 py-6">
-        <HomeListUsers listUsers={data?.results || []} isLoading={isLoading} error={error} />
+        <HomeListUsers
+          listUsers={
+            data?.results.filter((user) =>
+              (user.name.first + user.name.last)
+                .toLocaleLowerCase()
+                .includes(params.name?.toLocaleLowerCase() || "")
+            ) || []
+          }
+          isLoading={isLoading}
+          error={error}
+        />
       </div>
     </>
   );
