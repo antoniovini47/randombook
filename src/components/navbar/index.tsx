@@ -26,8 +26,8 @@ import {
 } from "@/components/ui/sheet";
 import { useTranslations } from "next-intl";
 
-import { DropDownUser } from "@/components/navbar-dropdown-user";
-import LocaleSelector from "../locale-selector";
+import DropDownUser from "@/components/navbar-dropdown-user";
+import LocaleSelector from "@/components/locale-selector";
 
 const Navbar = () => {
   const t = useTranslations();
