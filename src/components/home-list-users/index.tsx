@@ -60,7 +60,7 @@ export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProp
 
   if (isLoading) {
     return (
-      <div className="w-full h-full">
+      <div className="w-full h-full rounded-lg shadow-lg">
         <Table>
           <TableHeader>
             <TableRow>
@@ -142,9 +142,9 @@ export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProp
   }
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full rounded-lg shadow-lg">
       <Table>
-        <TableHeader>
+        <TableHeader className="rounded-lg shadow-md bg-slate-200">
           <TableRow>
             <TableHead>{t("id")}</TableHead>
             <TableHead>{t("name")}</TableHead>
@@ -158,7 +158,7 @@ export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProp
           {currentUsers.map((user, index) => (
             <TableRow
               key={index}
-              className="h-15 hover:bg-gray-100 cursor-pointer transition-colors duration-300"
+              className="h-15 hover:bg-gray-100 cursor-pointer transition-colors duration-300 rounded-lg shadow-md"
               onClick={() => router.push(`/user/${index + 1 + (currentPage - 1) * itensPerPage}`)}>
               <TableCell>{index + 1 + (currentPage - 1) * itensPerPage}</TableCell>
               <TableCell>
@@ -168,7 +168,7 @@ export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProp
               <TableCell>
                 <Avatar>
                   <AvatarImage
-                    className="w-10 h-10 rounded-full transition-transform duration-300 hover:scale-105"
+                    className="w-10 h-10 rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-lg"
                     src={user.picture.thumbnail}
                   />
                   <AvatarFallback>
