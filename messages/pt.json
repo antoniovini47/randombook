@@ -16,6 +16,18 @@
     "navbar-dropdown-user": {
       "my-account": "Minha conta",
       "logout": "Sair"
+    },
+    "home-list-users": {
+      "id": "ID",
+      "name": "Nome",
+      "email": "Email",
+      "picture": "Foto",
+      "nat": "Origem",
+      "dob": "Data de nascimento"
+    },
+    "home-search-bar": {
+      "placeholder": "Pesquisar por um usuário",
+      "search": "Pesquisar"
     }
   }
 }

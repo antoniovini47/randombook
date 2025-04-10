@@ -66,3 +66,5 @@ export function DropDownUser() {
     </DropdownMenu>
   );
 }
+
+export default DropDownUser;
