@@ -18,7 +18,6 @@ Tem uma alteração no título da página pra diferenciar as branches main (prod
 
 "use client";
 
-import { useTranslations } from "next-intl";
 import SearchBar from "@/components/search-bar";
 import HomeListUsers from "@/components/home-list-users";
 import { useState } from "react";
@@ -27,15 +26,13 @@ import { useGetUsers } from "@/queries/user.queries";
 import { defaultParams } from "@/constants/params";
 
 export default function Home() {
-  const t = useTranslations();
   const [params, setParams] = useState<SearchParams>(defaultParams);
   const { data, isLoading, error } = useGetUsers(params);
 
   return (
     <>
       <div className="flex flex-col gap-4 flex-1/6 justify-center items-center py-6">
-        <div>{`${t("pages./.welcome")} ${t("app-data.app-name")}`}</div>
-        <div>{t("app-data.app-description")}</div>
+        AQUI É O PREVIEW! SÓ PRA DEMONSTRAÇÃO DO CD DA VERCEL
       </div>
       <div className="w-full h-auto px-24 py-6">
         <SearchBar
