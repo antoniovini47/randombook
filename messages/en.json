@@ -6,24 +6,47 @@
   "pages": {
     "/": {
       "welcome": "Welcome to"
+    },
+    "user": {
+      "id": "ID",
+      "userDetails": "User Details",
+      "location": "Location",
+      "dateOfBirth": "Date of Birth",
+      "nationality": "Nationality",
+      "contact": "Contact",
+      "gender": "Gender",
+      "streetAddress": "Street Address",
+      "coordinates": "Coordinates",
+      "timezone": "Timezone",
+      "loginInformation": "Login Information",
+      "phone": "Phone",
+      "age": "Age",
+      "email": "Email",
+      "username": "Username",
+      "password": "Password",
+      "cell": "Cell",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "offset": "Offset",
+      "description": "Description"
     }
   },
   "components": {
     "navbar": {
       "home": "Home",
-      "about": "About"
+      "favorites": "Favorites"
     },
     "navbar-dropdown-user": {
       "my-account": "My account",
       "logout": "Logout"
     },
     "home-list-users": {
-      "id": "ID",
       "name": "Name",
       "email": "Email",
       "picture": "Picture",
       "nat": "Country",
-      "dob": "Date of birth"
+      "dob": "Date of birth",
+      "favorite": "Favorite"
     },
     "home-search-bar": {
       "placeholder": "Search for a user",

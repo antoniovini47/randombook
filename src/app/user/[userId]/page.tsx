@@ -22,11 +22,13 @@ import { defaultParams } from "@/constants/params";
 import formatBirthDate from "@/utils/formatBirthDate";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const UserDetailsPage = ({ params }: { params: Promise<{ userId: string }> }) => {
   const { userId } = use(params);
   const { data, isLoading, isError, error } = useGetUsers(defaultParams);
-  const user = data?.results[parseInt(userId) - 1];
+  const user = data?.results.find((user) => user.login?.uuid === userId);
+  const t = useTranslations("pages.user");
 
   if (isLoading) {
     return (
@@ -53,8 +55,8 @@ const UserDetailsPage = ({ params }: { params: Promise<{ userId: string }> }) =>
   }
 
   return (
-    <div className="container mx-auto p-4 w-[50vh] h-[50vh] transition-transform duration-300 hover:scale-105 mt-4 rounded-lg">
-      <h1 className="text-2xl font-bold mb-4">User Details</h1>
+    <div className="container mx-auto p-4 w-[50vw] h-[50vh] transition-transform duration-300 hover:scale-105 mt-4 rounded-lg">
+      <h1 className="text-2xl font-bold mb-4">{t("userDetails")}</h1>
       <div className="bg-white shadow-md rounded-lg p-4 transition-transform duration-300  hover:shadow-xl">
         <div className="mb-4">
           <Image
@@ -66,10 +68,8 @@ const UserDetailsPage = ({ params }: { params: Promise<{ userId: string }> }) =>
           />
         </div>
         <div className="mb-4">
-          <h3 className="text-lg font-semibold">ID</h3>
-          <p>
-            {user.id.name}: {user.id.value}
-          </p>
+          <h3 className="text-lg font-semibold">{t("id")}</h3>
+          <p>{user.login?.uuid}</p>
         </div>
         <div className="mb-4">
           <h2 className="text-xl font-semibold">
@@ -78,7 +78,7 @@ const UserDetailsPage = ({ params }: { params: Promise<{ userId: string }> }) =>
           <p className="text-gray-600">{user.email}</p>
         </div>
         <div className="mb-4">
-          <h3 className="text-lg font-semibold">Location</h3>
+          <h3 className="text-lg font-semibold">{t("location")}</h3>
           <p>
             {user.location?.city}, {user.location?.state}, {user.location?.country}
           </p>
@@ -86,49 +86,69 @@ const UserDetailsPage = ({ params }: { params: Promise<{ userId: string }> }) =>
         </div>
         <div className="mb-4">
           <span className="flex items-center gap-2">
-            <h3 className="text-lg font-semibold">Date of Birth</h3>
-            <Badge variant="default">Age: {user.dob.age}</Badge>
+            <h3 className="text-lg font-semibold">{t("dateOfBirth")}</h3>
+            <Badge variant="default">
+              {t("age")}: {user.dob.age}
+            </Badge>
           </span>
           <p>{formatBirthDate({ date: user.dob.date, showDaysSinceLastBirthday: true })}</p>
         </div>
         <div className="mb-4">
           <span className="flex items-center gap-2">
-            <h3 className="text-lg font-semibold">Nationality</h3>
+            <h3 className="text-lg font-semibold">{t("nationality")}</h3>
             <Badge variant="default">{user.nat}</Badge>
           </span>
         </div>
         <div className="mb-4">
-          <h3 className="text-lg font-semibold">Contact</h3>
-          <p>Phone: {user.phone}</p>
-          <p>Cell: {user.cell}</p>
-          <p>Email: {user.email}</p>
+          <h3 className="text-lg font-semibold">{t("contact")}</h3>
+          <p>
+            {t("phone")}: {user.phone}
+          </p>
+          <p>
+            {t("cell")}: {user.cell}
+          </p>
+          <p>
+            {t("email")}: {user.email}
+          </p>
         </div>
         <div className="mb-4">
           <span className="flex items-center gap-2">
-            <h3 className="text-lg font-semibold">Gender</h3>
+            <h3 className="text-lg font-semibold">{t("gender")}</h3>
             <Badge variant="default">{user.gender}</Badge>
           </span>
         </div>
         <div className="mb-4">
-          <h3 className="text-lg font-semibold">Street Address</h3>
+          <h3 className="text-lg font-semibold">{t("streetAddress")}</h3>
           <p>
             {user.location?.street?.number} {user.location?.street?.name}
           </p>
         </div>
         <div className="mb-4">
-          <h3 className="text-lg font-semibold">Coordinates</h3>
-          <p>Latitude: {user.location?.coordinates?.latitude}</p>
-          <p>Longitude: {user.location?.coordinates?.longitude}</p>
+          <h3 className="text-lg font-semibold">{t("coordinates")}</h3>
+          <p>
+            {t("latitude")}: {user.location?.coordinates?.latitude}
+          </p>
+          <p>
+            {t("longitude")}: {user.location?.coordinates?.longitude}
+          </p>
         </div>
         <div className="mb-4">
-          <h3 className="text-lg font-semibold">Timezone</h3>
-          <p>Offset: {user.location?.timezone?.offset}</p>
-          <p>Description: {user.location?.timezone?.description}</p>
+          <h3 className="text-lg font-semibold">{t("timezone")}</h3>
+          <p>
+            {t("offset")}: {user.location?.timezone?.offset}
+          </p>
+          <p>
+            {t("description")}: {user.location?.timezone?.description}
+          </p>
         </div>
         <div className="mb-4">
-          <h3 className="text-lg font-semibold">Login Information</h3>
-          <p>Username: {user.login?.username}</p>
-          <p>Password: {user.login?.password}</p>
+          <h3 className="text-lg font-semibold">{t("loginInformation")}</h3>
+          <p>
+            {t("username")}: {user.login?.username}
+          </p>
+          <p>
+            {t("password")}: {user.login?.password}
+          </p>
         </div>
       </div>
     </div>

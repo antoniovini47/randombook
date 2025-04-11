@@ -19,7 +19,7 @@ import { User } from "@/types/user";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { useTranslations } from "next-intl";
 import formatBirthDate from "@/utils/formatBirthDate";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Select,
   SelectTrigger,
@@ -28,6 +28,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { useRouter } from "next/navigation";
+import FavoriteButton from "@/components/favorite-button";
 
 type HomeListUsersProps = {
   listUsers: User[];
@@ -40,7 +41,7 @@ const itensPerPageOptions = [5, 10, 20];
 export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProps) => {
   const t = useTranslations("components.home-list-users");
   const router = useRouter();
-  const [itensPerPage, setItensPerPage] = useState(itensPerPageOptions[0]);
+  const [itensPerPage, setItensPerPage] = useState<number>(itensPerPageOptions[0]);
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(listUsers.length / itensPerPage);
 
@@ -49,13 +50,24 @@ export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProp
     currentPage * itensPerPage
   );
 
+  useEffect(() => {
+    const storedItensPerPage = Number(localStorage.getItem("itensPerPage"));
+    if (storedItensPerPage) {
+      setItensPerPage(storedItensPerPage);
+    }
+  }, []);
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
   const handleItensPerPageChange = (value: number) => {
     setItensPerPage(value);
-    setCurrentPage(1); // Reset to first page when items per page change
+    setCurrentPage(1);
+  };
+
+  const handleRedirectToUserPage = (userId: string) => {
+    router.push(`/user/${userId}`);
   };
 
   if (isLoading) {
@@ -64,12 +76,12 @@ export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProp
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>{t("id")}</TableHead>
               <TableHead>{t("name")}</TableHead>
               <TableHead>{t("email")}</TableHead>
               <TableHead>{t("picture")}</TableHead>
               <TableHead>{t("nat")}</TableHead>
               <TableHead>{t("dob")}</TableHead>
+              <TableHead>{t("favorite")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -144,58 +156,69 @@ export const HomeListUsers = ({ listUsers, isLoading, error }: HomeListUsersProp
   return (
     <div className="w-full h-full rounded-lg shadow-lg">
       <Table>
-        <TableHeader className="rounded-lg shadow-md bg-slate-200">
+        <TableHeader className="rounded-lg shadow-md bg-slate-100">
           <TableRow>
-            <TableHead>{t("id")}</TableHead>
             <TableHead>{t("name")}</TableHead>
             <TableHead>{t("email")}</TableHead>
             <TableHead>{t("picture")}</TableHead>
             <TableHead>{t("nat")}</TableHead>
             <TableHead>{t("dob")}</TableHead>
+            <TableHead>{t("favorite")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {currentUsers.map((user, index) => (
-            <TableRow
-              key={index}
-              className="h-15 hover:bg-gray-100 cursor-pointer transition-colors duration-300 rounded-lg shadow-md"
-              onClick={() => router.push(`/user/${index + 1 + (currentPage - 1) * itensPerPage}`)}>
-              <TableCell>{index + 1 + (currentPage - 1) * itensPerPage}</TableCell>
-              <TableCell>
-                {user.name.first} {user.name.last}
-              </TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>
-                <Avatar>
-                  <AvatarImage
-                    className="w-10 h-10 rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-lg"
-                    src={user.picture.thumbnail}
+          {currentUsers.map((user) => {
+            return (
+              <TableRow
+                key={user.login?.uuid}
+                className="h-15 hover:bg-gray-100 cursor-pointer transition-colors duration-300 rounded-lg shadow-md"
+                onClick={() => handleRedirectToUserPage(user.login?.uuid || "")}>
+                <TableCell>
+                  {user.name.first} {user.name.last}
+                </TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>
+                  <Avatar>
+                    <AvatarImage
+                      className="w-10 h-10 rounded-full transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+                      src={user.picture.thumbnail}
+                    />
+                    <AvatarFallback>
+                      <Skeleton className="w-10 h-10 rounded-full" />
+                    </AvatarFallback>
+                  </Avatar>
+                </TableCell>
+                <TableCell>
+                  <Avatar>
+                    <AvatarImage
+                      className="w-10 h-10 rounded-full transition-transform duration-300 hover:scale-105"
+                      src={`https://flagicons.lipis.dev/flags/1x1/${user.nat.toLowerCase()}.svg`}
+                    />
+                    <AvatarFallback>
+                      <Skeleton className="w-10 h-10 rounded-full" />
+                    </AvatarFallback>
+                  </Avatar>
+                </TableCell>
+                <TableCell>{formatBirthDate({ date: user.dob.date })}</TableCell>
+                <TableCell className="z-10">
+                  <FavoriteButton
+                    className="z-10"
+                    id={user.login?.uuid}
+                    onClick={(event) => event.stopPropagation()}
                   />
-                  <AvatarFallback>
-                    <Skeleton className="w-10 h-10 rounded-full" />
-                  </AvatarFallback>
-                </Avatar>
-              </TableCell>
-              <TableCell>
-                <Avatar>
-                  <AvatarImage
-                    className="w-10 h-10 rounded-full transition-transform duration-300 hover:scale-105"
-                    src={`https://flagicons.lipis.dev/flags/1x1/${user.nat.toLowerCase()}.svg`}
-                  />
-                  <AvatarFallback>
-                    <Skeleton className="w-10 h-10 rounded-full" />
-                  </AvatarFallback>
-                </Avatar>
-              </TableCell>
-              <TableCell>{formatBirthDate({ date: user.dob.date })}</TableCell>
-            </TableRow>
-          ))}
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 ml-4">
         <Select
           value={itensPerPage.toString()}
-          onValueChange={(value: string) => handleItensPerPageChange(Number(value))}>
+          onValueChange={(value: string) => {
+            handleItensPerPageChange(Number(value));
+            localStorage.setItem("itensPerPage", value);
+          }}>
           <SelectTrigger>
             <SelectValue placeholder="Select items per page" />
           </SelectTrigger>

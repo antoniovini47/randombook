@@ -8,13 +8,10 @@ export async function searchUsers(searchParams: SearchParams) {
   const url = new URL(ramdomUserBaseURL);
 
   Object.entries(searchParams).forEach(([key, value]) => {
-    if (value) {
-      if (Array.isArray(value)) {
-        url.searchParams.append(key, value.join(","));
-      } else {
-        url.searchParams.append(key, value.toString());
-      }
-    }
+    if (!value) return;
+    return Array.isArray(value)
+      ? url.searchParams.append(key, value.join(","))
+      : url.searchParams.append(key, value.toString());
   });
 
   const response = await axios.get(url.toString());
