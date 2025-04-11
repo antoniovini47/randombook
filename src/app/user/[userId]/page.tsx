@@ -1,17 +1,17 @@
 /* Comentário para o teste técnico: 
 Nesse arquivo quis demonstrar principalmente como eu faria para fazer uma página que pegasse
-dados através dos seus parâmetros, como por exemplo o id do usuario, e então consumisse a API
+dados através dos seus parâmetros de URL, como por exemplo o id do usuario, e então consumisse a API
 e mostrasse os resultados da sua resposta.
 
 Pegando o id através do "use" do react e usando o react query para controlar o estado da requisição.
 Foquei na funcionalidade e não na estética aqui.
 A página é bem simples, mas tem um loading e um erro caso a requisição falhe.
 
-E diferente pa lista, aqui optei por fazer um Loading Generico que pode ser reutilizado em outras partes da aplicação,
-em vez de criar skeletons para cada item que seria exibido, apesar de que seria o ideal. Foi só pra demonstração.
+E diferente da lista, aqui optei por fazer um Loading Generico que pode ser reutilizado em outras partes da aplicação,
+em vez de criar skeletons para cada item que seria exibido, apesar de que seria o ideal. Foi só pra demonstração de um outro tipo de loading.
 
 Como a API não possui um endpoint para buscar um usuário específico, foi necessário buscar todos os usuários
-dentro da lista que tinha predeterminada e pegar o usuário pelo id, que nesse caso vai ser a posicao dele no array.
+daquele meu conjunto de dados da lista que tinha predeterminada e encontrar o usuário pelo user.login.uuid
 */
 "use client";
 

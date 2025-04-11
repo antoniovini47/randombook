@@ -2,15 +2,18 @@
 Aqui representa a página principal da aplicação,
 
 Seria uma melhor prática a busca ser feita dentro do componente de lista de usuários,
-mas para fins de demonstração da interação entre componentes através de props, foi feito assim.
+mas para fins de demonstração da interação entre componentes através de props, eu quis fazer assim.
 
 O valores da seed e da page são fixos para que sempre 
 represente o mesmo conjunto de usuários, para demonstrações
-de como a aplicação funciona. Neste caso, é um mesmo grupo de 50 usuários.
+de como a aplicação funciona. Neste caso, é sempre um mesmo grupo de 50 usuários.
 
-{ seed: "SmartHow", results: 50, page: 1 }
+defaultParams: { seed: "SmartHow", results: 50, page: 1 }
 
-Também a busca pelo nome de forma bem direta, sem utilizar uma função de busca mais complexa.
+Também a busca pelo nome de forma bem direta, sem utilizar uma função de busca mais complexa,
+no caso de uma aplicação real, utilizaria de uma função utilitária para isso.
+
+Tem uma alteração no título da página pra diferenciar as branches main (production) e develop (preview).
 */
 
 "use client";
@@ -31,7 +34,6 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col gap-4 flex-1/6 justify-center items-center py-6">
-        <div className="flex flex-col gap-2">THIS IS STAGING - DEVELOP BRANCH</div>
         <div>{`${t("pages./.welcome")} ${t("app-data.app-name")}`}</div>
         <div>{t("app-data.app-description")}</div>
       </div>

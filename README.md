@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## RandomBook - A face-book but with random data
 
-## Getting Started
+Uma simples aplicação para demonstração do consumo de uma API pública https://randomuser.me/ utilizando **Typescript, Next.js (App Router), Tailwind CSS, ShadCN, React Query e Axios**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Comentário para o teste técnico:
+
+Durante toda a aplicação busque EXATAMENTE por:
+
+```
+/* Comentário para o teste técnico:
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Haverão comentários sobre cada código e meu raciocínio por trás dele.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### Uso de Git (GitFlow):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Utilizei do **GitFlow** durante toda a implementação do projeto, para fins de demonstração.
+Pode-se consultar o histórico das branches main, develop e as de features para exemplos.
 
-## Learn More
+#### Continuous Deploy usando Vercel (CD):
 
-To learn more about Next.js, take a look at the following resources:
+A branch **main** está como **production** configurada em https://randombook.rotec.dev/
+A branch **develop** está como **preview** configurada em https://staging.rotec.dev/
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Como instalar
 
-## Deploy on Vercel
+###### Clone o repositório:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+git clone https://github.com/antoniovini47/randombook.git
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+###### Entre na pasta:
+
+```
+cd ./randombook
+```
+
+###### Configure as variáveis de ambiente em um arquivo **.env** baseado no arquivo **.env.example**:
+
+```
+NEXT_PUBLIC_RANDOM_USER_BASE_URL=https://randomuser.me/api/
+```
+
+###### Instale as dependências:
+
+```
+pnpm i
+```
+
+###### Rode a aplicação:
+
+```
+pnpm dev
+```
+
+###### Acesse:
+
+```
+http://localhost:3000
+```
+
+---
+
+## Ou teste online (production) em:
+
+##### Domínio Próprio - https://randombook.rotec.dev/
+
+##### Vercel Deploy - https://randombook-nine.vercel.app/

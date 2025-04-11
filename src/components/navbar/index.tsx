@@ -74,7 +74,7 @@ const Navbar = () => {
           </SheetContent>
         </Sheet>
 
-        <Link href="/dashboard" className="mr-6 flex items-center space-x-2">
+        <Link href="/" className="mr-6 flex items-center space-x-2">
           <span className="font-bold sm:inline-block">{t("app-data.app-name")}</span>
         </Link>
         <div className="mr-4 hidden md:flex">

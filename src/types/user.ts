@@ -3,15 +3,16 @@ Aqui quis demonstrar um pouco sobre a tipagem do TypeScript,
 como podemos tipar uma requisição de API,
 e como podemos criar um tipo para o retorno dela.
 
-Além de usar um tipo dentro do outro.
+Além de usar um tipo dentro do outro, para reutilização de tipos.
 
 Tudo isso pra facilitar a manutenção e o entendimento do código.
-Evitando o uso de "any".
+Evitando o uso de "any"
 
 Alguns tipos foram declarados opcionais com o "?" para facilitar a leitura do código e
-controle de erros. Como é um teste só deixarei obrigatorio os que são pedidos no teste.
+controle de erros.
 
 Esses foram gerados diretamente com base na documentação da API do RandomUser.me.
+No searchParams eu optei por já aproveitá-lo para tipar os parametros da busca por nome
 */
 
 export type User = {

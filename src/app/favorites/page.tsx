@@ -1,16 +1,12 @@
 /* Comentário para o teste técnico:
-Aqui representa a página principal da aplicação,
+Com essa pagina eu quis demonstrar o uso do App Router,
+e como ele facilita a criação de rotas e acesso aos dados.
 
-Seria uma melhor prática a busca ser feita dentro do componente de lista de usuários,
-mas para fins de demonstração da interação entre componentes através de props, foi feito assim.
+DURANTE TODA A APLICAÇÃO OPTEI POR UTILIZAR O USER.LOGIN.UUID PARA IDENTIFICAR OS USUÁRIOS,
+E NÃO O USER.ID, POIS A API DO RANDOMUSERS.ME É TERRIVELMENTE IMPRECISA QUANTO A ISSO.
 
-O valores da seed e da page são fixos para que sempre 
-represente o mesmo conjunto de usuários, para demonstrações
-de como a aplicação funciona. Neste caso, é um mesmo grupo de 50 usuários.
-
-{ seed: "SmartHow", results: 50, page: 1 }
-
-Também a busca pelo nome de forma bem direta, sem utilizar uma função de busca mais complexa.
+Não foi necessário criar um arquivo de layout, apenas copiei o layout da página principal,
+filtrando para mostrar somente os usuários favoritados. Só pra demonstração
 */
 
 "use client";

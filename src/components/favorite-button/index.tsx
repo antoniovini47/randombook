@@ -1,10 +1,9 @@
 /* Comentário para o teste técnico:
 Aqui eu quis demonstrar um componente com propósito extremamente específico,
-(Que é o correto e a prática que utilizo em aplicações maiores, mas para fins de teste técnico, serve)
-mas que pode ser reutilizado em outras partes da aplicação.
+(Que é o correto, e uma boa prática, dessa forma que eu utilizo em aplicações maiores, mas para fins de teste técnico, serve)
 
-E o uso de localStorage para guardar dados localmente,
-dados esses que são resgatados quando o componente é montado.
+E também quis demonstrar o uso de localStorage para guardar dados localmente,
+dados esses que são resgatados quando o componente é montado usando o useEffect.
 */
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";

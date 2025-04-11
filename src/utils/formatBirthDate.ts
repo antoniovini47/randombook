@@ -2,10 +2,10 @@
 Aqui fiz somente um arquivo para demonstrar onde colocaria funções utilitárias,
 o exemplo foi para função de formatar data e calcular dias desde o último aniversário.
 
-E a reutilização da função para mostrar ou não a data desde o último aniversário.
+E a reutilização da mesma função para mostrar ou não a data desde o último aniversário, passando um parametro.
 
-Não me preocupei muito em fazer algo mais complexo e bem profissional,
-apenas algo que funcionasse para o teste.
+Não me preocupei muito em fazer algo mais complexo, bonito ou bem profissional,
+apenas algo que funcionasse para o teste e demostrar a estrutura de pastas e organização do projeto.
 */
 
 function transformForTwoDigits(value: number) {

@@ -1,3 +1,9 @@
+/* Comentário para o teste técnico:
+Aqui eu quis demonstrar um componente de busca, que interage com um outro componente de lista de usuários.
+
+Também utilizei debounce para evitar requisições desnecessárias e uma experiência mais suave para o usuário.
+*/
+
 import { Input } from "@/components/ui/input";
 import { SearchParams } from "@/types/user";
 import { useTranslations } from "next-intl";

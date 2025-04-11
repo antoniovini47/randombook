@@ -1,7 +1,7 @@
 {
   "app-data": {
     "app-name": "RandomBook",
-    "app-description": "A facebook but with random data."
+    "app-description": "A face-book but with random data."
   },
   "pages": {
     "/": {

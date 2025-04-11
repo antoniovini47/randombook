@@ -1,3 +1,10 @@
+/* Comentário para o teste técnico:
+Aqui eu quis demonstrar um componente para a seleção de idioma,
+que interage com a biblioteca next-intl para a internacionalização da aplicação.
+
+E salva as preferencias de idioma do usuario localmente.
+*/
+
 "use client";
 
 import { useLocale } from "next-intl";

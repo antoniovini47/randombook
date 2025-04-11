@@ -3,7 +3,7 @@ Utilizo deste arquivo para concentrar a lógica da minha api para fazer requisi�
 Isso evita repetições de código e facilita a manutenção,
 Coisas como headers, token e etc já estão abstraídas aqui
 
-Aqui entraria também cacheamento de tokens do usuário, caso necessário.
+Aqui seria bom também para cacheamento de tokens do usuário, caso necessário.
 */
 
 /* Comentário para o teste técnico: import { getConfig } from "@/lib/config"; */

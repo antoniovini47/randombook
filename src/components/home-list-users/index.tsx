@@ -1,3 +1,23 @@
+/* Comentário para o teste técnico:
+PS: Esse component está desnecessariamente grande, ele poderia facilmente ser dividido em outros componentes menores,
+mas eu demonstro sobre componentização e reutilização de componentes em outras partes do teste, esse aqui é para outros propósitos.
+
+Aqui tá o principal componente da aplicação, que é a lista de usuários.
+Nele eu quis demonstrar um componente que recebe dados filtrados por outro componente.
+
+Também fiz um uso de localStorage para guardar o número de itens por página,
+e também um uso de useEffect para resgatar o valor salvo no localStorage.
+
+Um loading feito com o uso de Skeletons para que seja mais fácil de entender a estrutura da lista,
+enquanto o usuário espera os dados serem carregados.
+
+Também fiz um uso de useRouter para redirecionar o usuário para a página de usuário,
+e um uso de useTranslations para traduzir os textos da lista.
+
+Também fiz um uso de useEffect para resgatar o valor das configurações salvo no localStorage,
+para que o usuário não perca as suas preferências de itens por página.
+*/
+
 import {
   Table,
   TableBody,
