@@ -1,7 +1,7 @@
 /* Comentário para o teste técnico: 
 Configuração da Internacionalização usando a biblioteca i18n,
 nela primeiro tenta importar as configurações de cookies, caso não a encontre
-seta pra default e salva
+seta pra default e salva no cookie.
 */
 
 import { cookies } from "next/headers";

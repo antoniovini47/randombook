@@ -15,7 +15,7 @@ type LoadingIconProps = {
 };
 
 const LoadingIcon = ({ size = defaultSize, className }: LoadingIconProps) => {
-  return <CgSpinnerTwoAlt className={`w-${size} h-${size} animate-spin ${className}`} />;
+  return <CgSpinnerTwoAlt className={`w-[${size}px] h-[${size}px] animate-spin ${className}`} />;
 };
 
 export default LoadingIcon;

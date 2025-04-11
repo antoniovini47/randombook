@@ -2,7 +2,7 @@
 Aqui é um exemplo de um componente suspenso que carregaria informações do usuário.
 Ele Não tem nenhuma função e redirecionamento porque é só para fins de teste.
 O componente é um menu suspenso que exibe as informações do usuário, como nome e email.
-Ele imprime as iniciais do usuário na tela, mas em uma implementação real, caberia um avatar.
+Ele imprime as iniciais do usuário na tela, mas em uma implementação real, caberia inserir um avatar.
 */
 
 import { User, LogOut } from "lucide-react";

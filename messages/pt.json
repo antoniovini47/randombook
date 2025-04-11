@@ -1,29 +1,52 @@
 {
   "app-data": {
     "app-name": "RandomBook",
-    "app-description": "Um facebook, mas com dados aleatórios."
+    "app-description": "Um face-book, mas com dados aleatórios."
   },
   "pages": {
     "/": {
       "welcome": "Bem-vindo ao"
+    },
+    "user": {
+      "id": "ID",
+      "userDetails": "Detalhes do Usuário",
+      "location": "Localização",
+      "dateOfBirth": "Data de Nascimento",
+      "nationality": "Nacionalidade",
+      "contact": "Contato",
+      "gender": "Gênero",
+      "streetAddress": "Endereço",
+      "coordinates": "Coordenadas",
+      "timezone": "Fuso Horário",
+      "loginInformation": "Informações de Login",
+      "phone": "Telefone",
+      "age": "Idade",
+      "email": "Email",
+      "username": "Nome de usuário",
+      "password": "Senha",
+      "cell": "Celular",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "offset": "Deslocamento",
+      "description": "Descrição"
     }
   },
   "components": {
     "navbar": {
       "home": "Início",
-      "about": "Sobre"
+      "favorites": "Favoritos"
     },
     "navbar-dropdown-user": {
       "my-account": "Minha conta",
       "logout": "Sair"
     },
     "home-list-users": {
-      "id": "ID",
       "name": "Nome",
       "email": "Email",
       "picture": "Foto",
       "nat": "Origem",
-      "dob": "Data de nascimento"
+      "dob": "Data de nascimento",
+      "favorite": "Favorito"
     },
     "home-search-bar": {
       "placeholder": "Pesquisar por um usuário",

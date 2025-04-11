@@ -1,3 +1,7 @@
+/* Comentário para o teste técnico:
+Aqui recomendei a extensão i18n-ally para facilitar a tradução e a criação de arquivos de tradução.
+Para outros desenvolvedores que não estão acostumados com o next-intl, é uma ótima ferramenta.
+*/
 {
     "recommendations": [
         "lokalise.i18n-ally"
