@@ -5,7 +5,7 @@ Ele possui 3 estágios para demonstração de diferentes telas: desktop/tablet/s
 
 "use client";
 
-import { Home, Info, Menu } from "lucide-react";
+import { Heart, Home, Menu } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -39,7 +39,7 @@ const Navbar = () => {
 
   const navItems = [
     { name: t("components.navbar.home"), href: "/", icon: Home },
-    { name: t("components.navbar.about"), href: "/", icon: Info },
+    { name: t("components.navbar.favorites"), href: "/favorites", icon: Heart },
   ];
   return (
     <header className="w-full p-4 border-b bg-white">

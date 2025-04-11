@@ -34,7 +34,7 @@
   "components": {
     "navbar": {
       "home": "Home",
-      "about": "About"
+      "favorites": "Favorites"
     },
     "navbar-dropdown-user": {
       "my-account": "My account",
