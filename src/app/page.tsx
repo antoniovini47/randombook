@@ -31,6 +31,7 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col gap-4 flex-1/6 justify-center items-center py-6">
+        <div className="flex flex-col gap-2">THIS IS STAGING - DEVELOP BRANCH</div>
         <div>{`${t("pages./.welcome")} ${t("app-data.app-name")}`}</div>
         <div>{t("app-data.app-description")}</div>
       </div>
