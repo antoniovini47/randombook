@@ -3,6 +3,8 @@ Aqui eu pude demonstrar o uso de Providers, que se estenderm por toda a aplicaç
 e também um componente de Navbar que vai se manter fixo em todas as páginas.
 */
 
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -40,6 +42,8 @@ export default async function RootLayout({
           <Navbar />
           <QueryProvider>{children}</QueryProvider>
         </NextIntlClientProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

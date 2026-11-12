@@ -19,6 +19,8 @@
     "@tanstack/react-query-devtools": "^5.72.1",
     "@tanstack/react-table": "^8.21.2",
     "@types/lodash": "^4.17.16",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.1.0",
     "axios": "^1.8.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
